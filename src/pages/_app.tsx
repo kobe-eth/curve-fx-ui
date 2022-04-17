@@ -7,14 +7,12 @@ import colors from "config/theme/colors";
 import Providers from "Providers";
 import { useFetchBalance } from "state/balance/hooks";
 import { useUpdateNetwork } from "state/network/hooks";
-import { useFetchRegistry } from "state/registry/hooks";
 import { useFetchTradingData } from "state/trading/hooks";
 import { useConnect } from "web3";
 
 function GlobalHooks() {
   useUpdateNetwork();
   useConnect();
-  useFetchRegistry();
   useFetchBalance();
   useFetchTradingData();
   return null;

@@ -4,7 +4,7 @@ import Toast from "components/Toast";
 
 export const createTxToast = (tx, toastText) => {
   const txHash = tx.hash;
-  const txLink = `https://bscscan.com/tx/${txHash}`;
+  const txLink = `https://polygonscan.com/tx/${txHash}`;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   toast((t) => <Toast text={toastText} link={txLink} />, {
     duration: 10000,

@@ -11,11 +11,3 @@ export const getMulticallAddress = (chainId: number) => {
 export const getSynthereumFinderAddress = (chainId: number) => {
   return getAddress(contracts.synthereumFinder, chainId);
 };
-
-export const getFloatingRateRegistryAddress = (chainId: number) => {
-  return getAddress(contracts.floatingRateRegistry, chainId);
-};
-
-export const getFixedRateRegistryAddress = (chainId: number) => {
-  return getAddress(contracts.fixedRateRegistry, chainId);
-};

@@ -19,11 +19,3 @@ export const useRouterAddress = () => {
 export const useCurveRouter = () => {
   return useAddress(contracts.curveRouter);
 };
-
-export const useFloatingRateRegistryAddress = () => {
-  return useAddress(contracts.floatingRateRegistry);
-};
-
-export const useFixedRateRegistryAddress = () => {
-  return useAddress(contracts.fixedRateRegistry);
-};

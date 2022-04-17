@@ -5,8 +5,6 @@ import { Contract } from "@ethersproject/contracts";
 import curveRouterABI from "config/abi/curveRouter.json";
 import erc20Abi from "config/abi/erc20.json";
 import fixedLpAbi from "config/abi/fixedRateLp.json";
-import fixedRateRegistryAbi from "config/abi/fixedRateRegistry.json";
-import floatingRateRegistryAbi from "config/abi/floatingRateRegistry.json";
 import lpAbi from "config/abi/lp.json";
 import routerAbi from "config/abi/router.json";
 import { getContract } from "utils";
@@ -14,8 +12,6 @@ import { useActiveWeb3React } from "web3";
 
 import {
   useCurveRouter,
-  useFixedRateRegistryAddress,
-  useFloatingRateRegistryAddress,
   useRouterAddress,
 } from "./useAddress";
 
@@ -60,12 +56,4 @@ export const useRouter = () => {
 
 export const useExchange = () => {
   return useContract(curveRouterABI, useCurveRouter());
-};
-
-export const useFloatingRateRegistry = () => {
-  return useContract(floatingRateRegistryAbi, useFloatingRateRegistryAddress());
-};
-
-export const useFixedRateRegistry = () => {
-  return useContract(fixedRateRegistryAbi, useFixedRateRegistryAddress());
 };

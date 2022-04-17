@@ -1,4 +1,5 @@
-const CURVE_API_URL = "https://curve-api-git-main-curvefi.vercel.app/api/getPools/polygon/factory"
+// const CURVE_API_URL = "https://curve-api-git-main-curvefi.vercel.app/api/getPools/polygon/factory"
+const CURVE_API_URL = "https://curve-api-git-main-curvefi.vercel.app/api/getFactoryV2Pools-polygon"
 const CURVE_IDS = [
   "factory-v2-22",
   "factory-v2-23",

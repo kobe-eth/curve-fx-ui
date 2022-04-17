@@ -1,6 +1,5 @@
 import { BalanceState } from "./balance/types";
 import { NetworkState } from "./network/types";
-import { RegistryState } from "./registry/types";
 import { TradingState } from "./trading/types";
 
 export enum TokenTypes {
@@ -31,7 +30,6 @@ export interface Token {
 // Global state
 export interface State {
   network: NetworkState;
-  registry: RegistryState;
   balance: BalanceState;
   trading: TradingState;
 }

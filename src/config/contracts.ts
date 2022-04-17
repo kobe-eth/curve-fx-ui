@@ -1,12 +1,6 @@
 import { CHAIN_ID } from "web3/config";
 
 const contracts = {
-  floatingRateRegistry: {
-    [CHAIN_ID.POLYGON]: "0xdCE12741DF9d2CcF2A8bB611684C8151De91a7d2",
-  },
-  fixedRateRegistry: {
-    [CHAIN_ID.POLYGON]: "0xdCE12741DF9d2CcF2A8bB611684C8151De91a7d2",
-  },
   curveRouter: {
     [CHAIN_ID.POLYGON]: "0x615C3a6f491a417873fD13EA5761b592897E9eE6",
   },

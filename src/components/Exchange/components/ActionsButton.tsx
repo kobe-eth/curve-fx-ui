@@ -16,6 +16,7 @@ import { useNetworkChainId } from "state/network/hooks";
 import { TradingPair } from "state/trading/types";
 import { useActiveWeb3React } from "web3";
 import contracts from "config/contracts";
+import { useCurveRouter } from "hooks/useAddress";
 
 interface ActionsButtonProps {
   tradingPair: TradingPair;
@@ -41,12 +42,13 @@ const ActionsButton: React.FC<ActionsButtonProps> = ({
   const [pendingTx, setPendingTx] = useState(false);
 
   const { onApproveIfNeeded } = useApproveIfNeeded(tokenInBalance.address);
-
   const { onExchange } = useFXEchange();
+
+  const curveRouter = useCurveRouter()
 
   const handleSwap = async () => {
     setPendingTx(true);
-    await onApproveIfNeeded(contracts.curveRouter["137"]);
+    await onApproveIfNeeded(curveRouter);
     const status = await onExchange(tokenInBalance, tokenOutBalance, tokenInAmount);
     if (status) {
       setTokenInAmount("0");

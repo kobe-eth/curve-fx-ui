@@ -5,13 +5,9 @@ import { ethers } from "ethers";
 
 // ABI
 import erc20Abi from "config/abi/erc20.json";
-import fixedRateRegistryAbi from "config/abi/fixedRateRegistry.json";
-import floatingRateRegistryAbi from "config/abi/floatingRateRegistry.json";
 import lpAbi from "config/abi/lp.json";
 import multicallAbi from "config/abi/multicall.json";
 import {
-  getFixedRateRegistryAddress,
-  getFloatingRateRegistryAddress,
   getMulticallAddress,
 } from "utils/addressHelpers";
 import { getProvider } from "web3";
@@ -50,30 +46,6 @@ export const getMulticallContract = (
     chainId,
     multicallAbi,
     getMulticallAddress(chainId),
-    signer
-  );
-};
-
-export const getFloatingRateRegistryContract = (
-  chainId: number,
-  signer?: ethers.Signer | ethers.providers.Provider
-) => {
-  return getContract(
-    chainId,
-    floatingRateRegistryAbi,
-    getFloatingRateRegistryAddress(chainId),
-    signer
-  );
-};
-
-export const getFixedRateRegistryContract = (
-  chainId: number,
-  signer?: ethers.Signer | ethers.providers.Provider
-) => {
-  return getContract(
-    chainId,
-    fixedRateRegistryAbi,
-    getFixedRateRegistryAddress(chainId),
     signer
   );
 };

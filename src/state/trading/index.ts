@@ -25,7 +25,7 @@ export const tradingSlice = createSlice({
 export const { setTradingData } = tradingSlice.actions;
 
 // Thunks
-export const fetchTradingData = (chainId, registry) => async (dispatch) => {
+export const fetchTradingData = () => async (dispatch) => {
   const prices = await fetchPrice();
   const pairs = await buildPairs(prices);
   const pairsWithRate = await fetchPairsPrice(pairs);
