@@ -8,11 +8,15 @@ import { exchange } from "utils/callHelpers";
 import { formatUnits, parseUnits } from "ethers/lib/utils";
 
 const buildArgs = (tokenIn: Token, tokenOut: Token): ExchangeParams => {
-  const token = tokenIn.type.includes(TokenTypes.jSynth) ? tokenIn : tokens.find((t) => t.symbol == tokenIn.jSynthAssociated);
-  const destToken = tokenOut.type.includes(TokenTypes.jSynth) ? tokenOut : tokens.find((t) => t.symbol == tokenOut.jSynthAssociated);
+  const token = tokenIn.type.includes(TokenTypes.jSynth)
+    ? tokenIn
+    : tokens.find((t) => t.symbol == tokenIn.jSynthAssociated);
+  const destToken = tokenOut.type.includes(TokenTypes.jSynth)
+    ? tokenOut
+    : tokens.find((t) => t.symbol == tokenOut.jSynthAssociated);
 
-  console.log(token)
-  console.log(destToken)
+  console.log(token);
+  console.log(destToken);
 
   return {
     derivative: token.derivative,
@@ -34,7 +38,7 @@ const useFXEchange = () => {
         formatUnits(parseUnits(amountIn, tokenIn.decimals), "wei"),
         buildArgs(tokenIn, tokenOut)
       );
-      return status
+      return status;
     },
     [account]
   );

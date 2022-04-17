@@ -7,9 +7,7 @@ import { ethers } from "ethers";
 import erc20Abi from "config/abi/erc20.json";
 import lpAbi from "config/abi/lp.json";
 import multicallAbi from "config/abi/multicall.json";
-import {
-  getMulticallAddress,
-} from "utils/addressHelpers";
+import { getMulticallAddress } from "utils/addressHelpers";
 import { getProvider } from "web3";
 
 const getContract = (

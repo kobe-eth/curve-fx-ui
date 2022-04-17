@@ -5,18 +5,14 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import ConnectButton from "components/Account/ConnectButton";
 import colors from "config/theme/colors";
-import {
-  useApproveIfNeeded,
-  useFXEchange,
-} from "hooks";
+import { useApproveIfNeeded, useFXEchange } from "hooks";
+import { useCurveRouter } from "hooks/useAddress";
 import { useAppDispatch } from "state";
 import { fetchBalanceData } from "state/balance";
 import { Balance } from "state/balance/types";
 import { useNetworkChainId } from "state/network/hooks";
 import { TradingPair } from "state/trading/types";
 import { useActiveWeb3React } from "web3";
-import contracts from "config/contracts";
-import { useCurveRouter } from "hooks/useAddress";
 
 interface ActionsButtonProps {
   tradingPair: TradingPair;
@@ -44,12 +40,16 @@ const ActionsButton: React.FC<ActionsButtonProps> = ({
   const { onApproveIfNeeded } = useApproveIfNeeded(tokenInBalance.address);
   const { onExchange } = useFXEchange();
 
-  const curveRouter = useCurveRouter()
+  const curveRouter = useCurveRouter();
 
   const handleSwap = async () => {
     setPendingTx(true);
     await onApproveIfNeeded(curveRouter);
-    const status = await onExchange(tokenInBalance, tokenOutBalance, tokenInAmount);
+    const status = await onExchange(
+      tokenInBalance,
+      tokenOutBalance,
+      tokenInAmount
+    );
     if (status) {
       setTokenInAmount("0");
       setTokenOutAmount("0");

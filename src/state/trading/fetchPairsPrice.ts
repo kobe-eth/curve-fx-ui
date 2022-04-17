@@ -1,8 +1,6 @@
 import { TradingPair } from "./types";
 
-export const fetchPairsPrice = async (
-  pairsList: TradingPair[],
-) => {
+export const fetchPairsPrice = async (pairsList: TradingPair[]) => {
   const pairsWithRate = pairsList.map((pair) => {
     return {
       ...pair,

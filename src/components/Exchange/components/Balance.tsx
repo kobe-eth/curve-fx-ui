@@ -4,6 +4,7 @@ import { Text } from "components/Text";
 import colors from "config/theme/colors";
 import { Balance } from "state/balance/types";
 import { format } from "utils/number";
+
 import { Flex } from "./styles";
 
 interface BalanceProps {

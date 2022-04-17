@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { formatUnits, parseUnits } from "ethers/lib/utils";
+import { formatUnits } from "ethers/lib/utils";
 
 import { useBalanceFromSymbol } from "state/balance/hooks";
 import { usePairsAndRoutesFromSymbol } from "state/trading/hooks";
@@ -12,7 +12,6 @@ import Balance from "./components/Balance";
 import ReverseToken from "./components/ReverseToken";
 import { ExchangeBody } from "./components/styles";
 import TradingRate from "./components/TradingRate";
-import { BigNumber } from "ethers";
 
 interface Props {
   tokenIn: string;
@@ -47,8 +46,8 @@ const Swap: React.FC<Props> = ({
 
     setTokenOutAmount(
       getAmountOut(
-      Number(formatUnits(tokenInBalance.userBalance, "ether")),
-      tradingPair
+        Number(formatUnits(tokenInBalance.userBalance, "ether")),
+        tradingPair
       )
     );
   };

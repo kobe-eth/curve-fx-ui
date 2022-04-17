@@ -10,10 +10,7 @@ import routerAbi from "config/abi/router.json";
 import { getContract } from "utils";
 import { useActiveWeb3React } from "web3";
 
-import {
-  useCurveRouter,
-  useRouterAddress,
-} from "./useAddress";
+import { useCurveRouter, useRouterAddress } from "./useAddress";
 
 export function useContract(
   abi: any,

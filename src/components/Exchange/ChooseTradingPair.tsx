@@ -5,10 +5,10 @@ import { styled } from "@mui/material";
 import { Text } from "components/Text";
 import colors from "config/theme/colors";
 import { usePairsAndRoutes } from "state/trading/hooks";
+import { damlev } from "utils/levHelper";
 import { format } from "utils/number";
 
 import { ExchangeBody, Image, SelectTokenContainer } from "./components/styles";
-import { damlev } from "utils/levHelper";
 
 interface Props {
   filterPairs: string;
