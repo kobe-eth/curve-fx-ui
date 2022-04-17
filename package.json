@@ -1,0 +1,49 @@
+{
+  "name": "jarvis-fixed-rate",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.4.2",
+    "@mui/material": "^5.4.3",
+    "@reduxjs/toolkit": "^1.7.2",
+    "@types/styled-system": "^5.1.15",
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/injected-connector": "^6.0.7",
+    "@web3-react/walletconnect-connector": "6.2.8",
+    "bignumber.js": "^9.0.2",
+    "damerau-levenshtein": "^1.0.8",
+    "ethers": "^5.5.4",
+    "lodash": "^4.17.21",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hot-toast": "^2.2.0",
+    "react-redux": "^7.2.6",
+    "styled-system": "^5.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.19",
+    "@types/react": "17.0.39",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "eslint": "8.9.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "12.1.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.5.1",
+    "typescript": "4.5.5"
+  }
+}

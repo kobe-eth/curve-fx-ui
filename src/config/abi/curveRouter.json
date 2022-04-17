@@ -1,0 +1,66 @@
+[
+    {
+      "inputs": [],
+      "name": "curve",
+      "outputs": [
+        {
+          "internalType": "contract ICurveExchange",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "underlyingAmount",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "derivative",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "destPool",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "destDerivative",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct CurveFXRouter.ExchangeParams",
+          "name": "params",
+          "type": "tuple"
+        }
+      ],
+      "name": "exchange",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "received",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+]

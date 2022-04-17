@@ -1,0 +1,38 @@
+{
+    "short_name": "Jarvis Fixed Rate",
+    "name": "Jarvis Fixed Rate",
+    "icons": [
+      {
+        "src": "/icons/icon_192.ico",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/alpha_192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/icons/alpha_512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      },
+      {
+        "src": "/icons/maskable_192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "/icons/maskable_512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+      }
+    ],
+    "theme_color": "#292929",
+    "background_color": "#292929",
+    "start_url": ".",
+    "display": "standalone"
+  }
+  
