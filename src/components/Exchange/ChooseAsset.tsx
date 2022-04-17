@@ -62,7 +62,7 @@ const ChooseAsset: React.FC<Props> = ({
 
   const handleTokenChange = (token) => {
     if (token.symbol === currentOtherToken) {
-      setOtherToken(currentToken)
+      setOtherToken(currentToken);
     }
     setToken(token.symbol);
     setView("SWAP");

@@ -1,11 +1,12 @@
 import { useCallback } from "react";
 
-import { useActiveWeb3React } from "web3";
-import { useExchange } from "./useContract";
-import { ExchangeParams, Token, TokenTypes } from "state/types";
-import tokens from "config/tokens";
-import { exchange } from "utils/callHelpers";
 import { formatUnits, parseUnits } from "ethers/lib/utils";
+
+import tokens from "config/tokens";
+import { ExchangeParams, Token, TokenTypes } from "state/types";
+import { exchange } from "utils/callHelpers";
+
+import { useExchange } from "./useContract";
 
 const buildArgs = (tokenIn: Token, tokenOut: Token): ExchangeParams => {
   const token = tokenIn.type.includes(TokenTypes.jSynth)
@@ -14,9 +15,6 @@ const buildArgs = (tokenIn: Token, tokenOut: Token): ExchangeParams => {
   const destToken = tokenOut.type.includes(TokenTypes.jSynth)
     ? tokenOut
     : tokens.find((t) => t.symbol == tokenOut.jSynthAssociated);
-
-  console.log(token);
-  console.log(destToken);
 
   return {
     derivative: token.derivative,
@@ -27,7 +25,6 @@ const buildArgs = (tokenIn: Token, tokenOut: Token): ExchangeParams => {
 
 const useFXEchange = () => {
   const curveRouter = useExchange();
-  const { account } = useActiveWeb3React();
 
   const handleCurveRouterExchange = useCallback(
     async (tokenIn: Token, tokenOut: Token, amountIn: string) => {
@@ -40,7 +37,7 @@ const useFXEchange = () => {
       );
       return status;
     },
-    [account]
+    [curveRouter]
   );
 
   return { onExchange: handleCurveRouterExchange };

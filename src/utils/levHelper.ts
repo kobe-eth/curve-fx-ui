@@ -1,5 +1,6 @@
-import { TradingPair } from "state/trading/types";
 import * as levenshtein from "damerau-levenshtein";
+
+import { TradingPair } from "state/trading/types";
 
 export const damlev = (query: string, p: TradingPair) => {
   const [symbol1, symbol2] = p.name

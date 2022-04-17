@@ -46,7 +46,9 @@ const Swap: React.FC<Props> = ({
 
     setTokenOutAmount(
       getAmountOut(
-        Number(formatUnits(tokenInBalance.userBalance, tokenInBalance.decimals)),
+        Number(
+          formatUnits(tokenInBalance.userBalance, tokenInBalance.decimals)
+        ),
         tradingPair
       )
     );
