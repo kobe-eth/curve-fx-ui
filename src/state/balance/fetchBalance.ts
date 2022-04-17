@@ -13,21 +13,13 @@ export const fetchBalance = async (chainId: number, account: string) => {
     };
   });
 
-  const callDecimal = tokens.map((t) => {
-    return {
-      address: t.address,
-      name: "decimals",
-    };
-  });
-
   const rawBalances = await multicall(chainId, erc20Abi, callsBalance);
-  const rawDecimals = await multicall(chainId, erc20Abi, callDecimal);
 
   const balances = rawBalances.map((t, index) => {
     const balance = t["balance"];
     return {
       ...tokens[index],
-      userBalance: Number(balance) > 0 ? balance : 0,
+      userBalance: formatUnits(balance, 0),
     };
   });
 

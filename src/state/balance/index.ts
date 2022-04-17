@@ -10,7 +10,7 @@ const initialState: BalanceState = {
   data: tokens.map((t) => {
     return {
       ...t,
-      userBalance: 0,
+      userBalance: "0",
     };
   }),
 };

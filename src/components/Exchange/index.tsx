@@ -79,7 +79,10 @@ const Exchange: React.FC = () => {
           <ChooseAsset
             filterTokens={searchValue}
             setSearchValue={setSearchValue}
+            currentToken={tokenIn}
+            currentOtherToken={tokenOut}
             setToken={setTokenIn}
+            setOtherToken={setTokenOut}
             setView={setView}
           />
         );
@@ -88,7 +91,10 @@ const Exchange: React.FC = () => {
           <ChooseAsset
             filterTokens={searchValue}
             setSearchValue={setSearchValue}
+            currentToken={tokenOut}
+            currentOtherToken={tokenIn}
             setToken={setTokenOut}
+            setOtherToken={setTokenIn}
             setView={setView}
           />
         );

@@ -12,7 +12,10 @@ import { ExchangeBody, Image, SelectTokenContainer } from "./components/styles";
 interface Props {
   filterTokens: string;
   setSearchValue: (newSearchValue) => void;
+  currentToken: string;
+  currentOtherToken: string;
   setToken: (newToken) => void;
+  setOtherToken: (newToken) => void;
   setView: (view) => void;
 }
 
@@ -33,13 +36,16 @@ const SelectTokenInList = styled(SelectTokenContainer)({
 const ChooseAsset: React.FC<Props> = ({
   filterTokens,
   setSearchValue,
+  currentToken,
+  currentOtherToken,
   setToken,
+  setOtherToken,
   setView,
 }) => {
   const balances = useBalances();
 
-  const positiveBalance = balances.filter((t) => t.userBalance > 0);
-  const zeroBalance = balances.filter((t) => t.userBalance === 0);
+  const positiveBalance = balances.filter((t) => t.userBalance !== "0");
+  const zeroBalance = balances.filter((t) => t.userBalance === "0");
   const filteredPositiveBalance =
     filterTokens === ""
       ? positiveBalance
@@ -55,6 +61,9 @@ const ChooseAsset: React.FC<Props> = ({
         );
 
   const handleTokenChange = (token) => {
+    if (token.symbol === currentOtherToken) {
+      setOtherToken(currentToken)
+    }
     setToken(token.symbol);
     setView("SWAP");
     setSearchValue("");
