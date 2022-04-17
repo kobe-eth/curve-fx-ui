@@ -20,7 +20,7 @@ const Balance: React.FC<BalanceProps> = ({ label, balance, warning }) => {
         {warning ? "Insufficient funds" : label}
       </Text>
       <Text fontSize="14px" style={{ color: colors.textSecondary }}>
-        Balance: {format(balance.userBalance, balance.decimals)}
+        Balance: {format(Number(balance.userBalance), balance.decimals)}
       </Text>
     </Flex>
   );

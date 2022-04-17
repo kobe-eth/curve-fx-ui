@@ -19,6 +19,7 @@ function GlobalHooks() {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const AnyComponent = Component as any;
   return (
     <>
       <Head>
@@ -43,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           }}
         />
         <Container maxWidth="lg">
-          <Component {...pageProps} />
+            <AnyComponent {...pageProps} />
         </Container>
       </Providers>
     </>

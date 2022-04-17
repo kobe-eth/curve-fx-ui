@@ -35,8 +35,9 @@ const SelectTokenInList = styled(SelectTokenContainer)({
 const UserToken: React.FC = () => {
   const balances = useBalances();
 
-  const positiveBalance = balances.filter((t) => t.userBalance > 0);
-  const zeroBalance = balances.filter((t) => t.userBalance === 0);
+  const positiveBalance = balances.filter((t) => Number(t.userBalance) > 0);
+  const zeroBalance = balances.filter((t) => Number(t.userBalance) === 0);
+
 
   const renderToken = (token) => {
     return (
