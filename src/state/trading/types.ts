@@ -4,7 +4,6 @@ export interface TradingPair {
   name: string;
   token0: Token;
   token1: Token;
-  route: Token[];
   rate: number;
 }
 

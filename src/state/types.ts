@@ -22,6 +22,7 @@ export interface Token {
   type: TokenTypes[];
   collateralSymbol?: string;
   jSynthAssociated?: string;
+  usdPrice?: number;
   ///
   derivative?: string;
   pool?: string;

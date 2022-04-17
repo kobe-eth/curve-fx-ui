@@ -5,12 +5,12 @@ export const CHAIN_ID = {
 
 // Network labels
 export const NETWORK_LABEL = {
-  [CHAIN_ID.POLYGON]: "BNB Chain",
+  [CHAIN_ID.POLYGON]: "Polygon Mainnet",
 };
 
 // Network RPC nodes
 export const NETWORK_RPC = {
-  [CHAIN_ID.POLYGON]: [process.env.NEXT_PUBLIC_BNB_MAINNET],
+  [CHAIN_ID.POLYGON]: [process.env.NEXT_PUBLIC_POLYGON_MAINNET],
 };
 
 // Network block explorers
@@ -21,7 +21,7 @@ export const BLOCK_EXPLORER = {
 export const CHAIN_PARAMS = {
   [CHAIN_ID.POLYGON]: {
     chainId: "0x89",
-    chainName: "Polygon",
+    chainName: "Polygon Mainnet",
     nativeCurrency: {
       name: "matic",
       symbol: "MATIC",

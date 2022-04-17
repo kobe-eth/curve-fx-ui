@@ -1,8 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
 
-import { buildPairsAndRoutes } from "./buildPairsAndRoutes";
+import { buildPairs } from "./buildPairs";
 import { fetchPairsPrice } from "./fetchPairsPrice";
+import { fetchPrice } from "./fetchPrice";
 import { TradingState, TradingPair } from "./types";
 
 const initialState: TradingState = {
@@ -25,8 +26,9 @@ export const { setTradingData } = tradingSlice.actions;
 
 // Thunks
 export const fetchTradingData = (chainId, registry) => async (dispatch) => {
-  const pairs = await buildPairsAndRoutes();
-  const pairsWithRate = await fetchPairsPrice(chainId, pairs, registry.data);
+  const prices = await fetchPrice();
+  const pairs = await buildPairs(prices);
+  const pairsWithRate = await fetchPairsPrice(pairs);
   dispatch(setTradingData(pairsWithRate));
 };
 

@@ -18,7 +18,7 @@ RPC and chain settings can be updated from `src/web3/config/chains.ts`
 
 ```js
 export const NETWORK_RPC = {
-  [CHAIN_ID.POLYGON]: [process.env.NEXT_PUBLIC_BNB_MAINNET],
+  [CHAIN_ID.POLYGON]: [process.env.NEXT_PUBLIC_POLYGON_MAINNET],
 };
 ```
 

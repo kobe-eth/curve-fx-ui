@@ -8,10 +8,11 @@ import fetchAndUpdateNetwork from "./fetchNetwork";
 
 const chainIdSafeCheck = (): number => {
   if (typeof window !== "undefined") {
-    const localStorageChain = parseInt(
-      window.localStorage.getItem("chainIdStatus")
-    );
-    return localStorageChain || CHAIN_ID.POLYGON;
+    // const localStorageChain = parseInt(
+    //   window.localStorage.getItem("chainIdStatus")
+    // );
+    // return localStorageChain || CHAIN_ID.POLYGON;
+    return CHAIN_ID.POLYGON;
   }
   return CHAIN_ID.POLYGON;
 };

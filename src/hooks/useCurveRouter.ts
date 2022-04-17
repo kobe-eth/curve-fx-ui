@@ -34,6 +34,7 @@ const useFXEchange = () => {
         formatUnits(parseUnits(amountIn, tokenIn.decimals), "wei"),
         buildArgs(tokenIn, tokenOut)
       );
+      return status
     },
     [account]
   );
