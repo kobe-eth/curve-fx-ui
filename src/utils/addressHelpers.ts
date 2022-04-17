@@ -7,7 +7,3 @@ export const getAddress = (address, chainId: number): string => {
 export const getMulticallAddress = (chainId: number) => {
   return getAddress(contracts.multicall, chainId);
 };
-
-export const getSynthereumFinderAddress = (chainId: number) => {
-  return getAddress(contracts.synthereumFinder, chainId);
-};

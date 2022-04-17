@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 
 import { useWeb3React } from "@web3-react/core";
-import BigNumber from "bignumber.js";
 
 import { useNetworkChainId } from "state/network/hooks";
 import { getErc20Contract } from "utils/contractHelpers";
@@ -15,7 +14,7 @@ export const useAllowance = (erc20address: string) => {
       if (account) {
         const contract = getErc20Contract(chainId, erc20address);
         const res = await contract.allowance(account, spenderAddress);
-        return new BigNumber(res.toString());
+        return res.toString();
       }
     },
     [account, chainId, erc20address]

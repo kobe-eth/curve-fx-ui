@@ -1,11 +1,8 @@
 import { Contract } from "@ethersproject/contracts";
 import { ethers } from "ethers";
 
-// Addresses
-
 // ABI
 import erc20Abi from "config/abi/erc20.json";
-import lpAbi from "config/abi/lp.json";
 import multicallAbi from "config/abi/multicall.json";
 import { getMulticallAddress } from "utils/addressHelpers";
 import { getProvider } from "web3";
@@ -26,14 +23,6 @@ export const getErc20Contract = (
   signer?: ethers.Signer | ethers.providers.Provider
 ) => {
   return getContract(chainId, erc20Abi, address, signer);
-};
-
-export const getLpContract = (
-  chainId: number,
-  address: string,
-  signer?: ethers.Signer | ethers.providers.Provider
-) => {
-  return getContract(chainId, lpAbi, address, signer);
 };
 
 export const getMulticallContract = (

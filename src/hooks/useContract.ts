@@ -4,13 +4,10 @@ import { Contract } from "@ethersproject/contracts";
 
 import curveRouterABI from "config/abi/curveRouter.json";
 import erc20Abi from "config/abi/erc20.json";
-import fixedLpAbi from "config/abi/fixedRateLp.json";
-import lpAbi from "config/abi/lp.json";
-import routerAbi from "config/abi/router.json";
 import { getContract } from "utils";
 import { useActiveWeb3React } from "web3";
 
-import { useCurveRouter, useRouterAddress } from "./useAddress";
+import { useCurveRouter } from "./useAddress";
 
 export function useContract(
   abi: any,
@@ -37,18 +34,6 @@ export function useContract(
 
 export const useERC20 = (address: string) => {
   return useContract(erc20Abi, address);
-};
-
-export const useLp = (address: string) => {
-  return useContract(lpAbi, address);
-};
-
-export const useFixedLp = (address: string) => {
-  return useContract(fixedLpAbi, address);
-};
-
-export const useRouter = () => {
-  return useContract(routerAbi, useRouterAddress());
 };
 
 export const useExchange = () => {

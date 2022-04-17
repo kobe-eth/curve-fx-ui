@@ -91,8 +91,8 @@ class MyDocument extends Document {
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="msapplication-TileColor" content="#fff" />
           <meta name="theme-color" content="#fff" />
-          <meta name="application-name" content="Jarvis Fixed Rate" />
-          <meta name="apple-mobile-web-app-title" content="Jarvis Fixed Rate" />
+          <meta name="application-name" content="Jarvis Curve FX" />
+          <meta name="apple-mobile-web-app-title" content="Jarvis Curve FX" />
         </Head>
         <body>
           <Main />

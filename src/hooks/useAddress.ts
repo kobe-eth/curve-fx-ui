@@ -12,10 +12,6 @@ const useAddress = (addresses) => {
   return address;
 };
 
-export const useRouterAddress = () => {
-  return useAddress(contracts.liquidityRouter);
-};
-
 export const useCurveRouter = () => {
   return useAddress(contracts.curveRouter);
 };
