@@ -8,8 +8,9 @@ import colors from "config/theme/colors";
 import ChooseAsset from "./ChooseAsset";
 import ChooseTradingPair from "./ChooseTradingPair";
 import ProtocolFees from "./components/ProtocolFees";
+import Route from "./components/Route";
 import SearchBar from "./components/SearchBar";
-import { ExchangeHeader, Wrapper } from "./components/styles";
+import { ExchangeHeader, SwapInfo, Wrapper } from "./components/styles";
 import Swap from "./Swap";
 
 const Container = styled("div")({
@@ -137,11 +138,17 @@ const Exchange: React.FC = () => {
         />
         {renderView()}
       </Wrapper>
-      <ProtocolFees
-        tokenIn={tokenIn}
-        tokenOut={tokenOut}
-        tokenInAmount={tokenInAmount}
-      />
+      <SwapInfo>
+        <ProtocolFees
+          tokenIn={tokenIn}
+          tokenOut={tokenOut}
+          tokenInAmount={tokenInAmount}
+        />
+        <Route
+          tokenIn={tokenIn}
+          tokenOut={tokenOut}
+        />
+      </SwapInfo>
     </Container>
   );
 };

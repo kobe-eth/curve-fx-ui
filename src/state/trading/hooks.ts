@@ -8,7 +8,7 @@ import { State } from "state/types";
 import { CHAIN_ID } from "web3/config";
 
 import { fetchTradingData } from ".";
-import { TradingPair } from "./types";
+import { Price, TradingPair } from "./types";
 
 export const useFetchTradingData = () => {
   const dispatch = useAppDispatch();
@@ -19,6 +19,16 @@ export const useFetchTradingData = () => {
       dispatch(fetchTradingData());
     }
   }, [dispatch, chainId]);
+};
+
+export const useUsdPrices = (): Price[] => {
+  const usdPrices = useSelector((state: State) => state.trading.prices);
+  return usdPrices;
+};
+
+export const useUsdPricesFromSymbol = (symbol: string): Price => {
+  const usdPrice = useSelector((state: State) => state.trading.prices.find(p => p.symbol === symbol));
+  return usdPrice;
 };
 
 export const usePairsAndRoutes = (): TradingPair[] => {

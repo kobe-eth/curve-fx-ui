@@ -42,6 +42,7 @@ const tokens: Token[] = [
     decimals: 2,
     type: [TokenTypes.stablecoin],
     jSynthAssociated: "jEUR",
+    pool: "0xCbbA8c0645ffb8aA6ec868f6F5858F2b0eAe34DA",
   },
   {
     symbol: "CADC",
@@ -49,6 +50,7 @@ const tokens: Token[] = [
     decimals: 18,
     type: [TokenTypes.stablecoin],
     jSynthAssociated: "jCAD",
+    pool: "0x09757F36838AAACD47DF9de4D3f0AdD57513531f",
   },
   {
     symbol: "PAR",
@@ -56,6 +58,7 @@ const tokens: Token[] = [
     decimals: 18,
     type: [TokenTypes.stablecoin],
     jSynthAssociated: "jEUR",
+    pool: "0xCbbA8c0645ffb8aA6ec868f6F5858F2b0eAe34DA",
   },
   {
     symbol: "EURT",
@@ -63,6 +66,7 @@ const tokens: Token[] = [
     decimals: 6,
     type: [TokenTypes.stablecoin],
     jSynthAssociated: "jEUR",
+    pool: "0xCbbA8c0645ffb8aA6ec868f6F5858F2b0eAe34DA",
   },
   {
     symbol: "JPYC",
@@ -70,6 +74,7 @@ const tokens: Token[] = [
     decimals: 18,
     type: [TokenTypes.stablecoin],
     jSynthAssociated: "jJPY",
+    pool: "0x6cA82a7E54053B102e7eC452788cC19204e831de",
   },
   {
     symbol: "XSGD",
@@ -77,6 +82,7 @@ const tokens: Token[] = [
     decimals: 6,
     type: [TokenTypes.stablecoin],
     jSynthAssociated: "jSGD",
+    pool: "0x91436EB8038ecc12c60EE79Dfe011EdBe0e6C777",
   },
 ];
 

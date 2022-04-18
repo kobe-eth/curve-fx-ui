@@ -4,10 +4,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { buildPairs } from "./buildPairs";
 import { fetchPairsPrice } from "./fetchPairsPrice";
 import { fetchPrice } from "./fetchPrice";
-import { TradingState, TradingPair } from "./types";
+import { TradingState, TradingPair, Price } from "./types";
 
 const initialState: TradingState = {
   data: null,
+  prices: null
 };
 
 export const tradingSlice = createSlice({
@@ -18,15 +19,20 @@ export const tradingSlice = createSlice({
       const tradingData: TradingPair[] = action.payload;
       state.data = tradingData;
     },
+    setPriceData: (state, action) => {
+      const pricesData: Price[] = action.payload;
+      state.prices = pricesData;
+    },
   },
 });
 
 // Actions
-export const { setTradingData } = tradingSlice.actions;
+export const { setTradingData, setPriceData } = tradingSlice.actions;
 
 // Thunks
 export const fetchTradingData = () => async (dispatch) => {
   const prices = await fetchPrice();
+  dispatch(setPriceData(prices));
   const pairs = await buildPairs(prices);
   const pairsWithRate = await fetchPairsPrice(pairs);
   dispatch(setTradingData(pairsWithRate));

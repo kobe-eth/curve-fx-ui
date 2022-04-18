@@ -7,8 +7,7 @@ import { Text } from "components/Text";
 import { JARVIS_SWAP_FEES } from "config";
 import colors from "config/theme/colors";
 import { format } from "utils/number";
-
-import { Wrapper } from "./styles";
+import { useUsdPricesFromSymbol } from "state/trading/hooks";
 
 interface ProtocolFeesProps {
   tokenIn: string;
@@ -16,12 +15,10 @@ interface ProtocolFeesProps {
   tokenInAmount: any;
 }
 
-const Container = styled(Wrapper)({
-  flexDirection: "row",
+const Container = styled("div")({
+  display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  marginTop: "24px",
-  padding: "16px",
   svg: {
     width: "16px",
     height: "16px",
@@ -33,12 +30,14 @@ const ProtocolFees: React.FC<ProtocolFeesProps> = ({
   tokenIn,
   tokenInAmount,
 }) => {
+  const usdPrice = useUsdPricesFromSymbol(tokenIn).usdPrice
+
   return (
     <>
       {Number(tokenInAmount) > 0 ? (
         <Container>
           <Text style={{ color: `${colors.textPrimary}50` }}>
-            Protocol fees
+            Jarvis fees
             <Tooltip
               title="A 0.10% provider fee is collected and split between Liquidity Provider and the protocol treasury"
               arrow
@@ -48,7 +47,7 @@ const ProtocolFees: React.FC<ProtocolFeesProps> = ({
             </Tooltip>
           </Text>
           <Text style={{ color: `${colors.textPrimary}50` }}>
-            {format(Number(tokenInAmount) * JARVIS_SWAP_FEES, 0)} {tokenIn}
+            {format(Number(tokenInAmount) * JARVIS_SWAP_FEES * usdPrice, 0)} USDC
           </Text>
         </Container>
       ) : (

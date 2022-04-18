@@ -7,7 +7,14 @@ export interface TradingPair {
   rate: number;
 }
 
+export interface Price {
+  symbol: string;
+  address: string;
+  usdPrice: number;
+}
+
 // Slices state
 export interface TradingState {
   data: TradingPair[];
+  prices: Price[];
 }
