@@ -46,20 +46,28 @@ const ProtocolFees: React.FC<ProtocolFeesProps> = ({
     const tokenOutObject = tokens.find((t) => t.symbol === tokenOut);
 
     if (
-      tokenInObject.type.includes(TokenTypes.jSynth) &&
-      tokenOutObject.type.includes(TokenTypes.jSynth)
+      (tokenInObject.type.includes(TokenTypes.jSynth) &&
+        tokenOutObject.type.includes(TokenTypes.jSynth)) ||
+      (tokenInObject.type.includes(TokenTypes.jSynth) &&
+        tokenOutObject.type.includes(TokenTypes.collateral)) ||
+      (tokenInObject.type.includes(TokenTypes.collateral) &&
+        tokenOutObject.type.includes(TokenTypes.jSynth))
     ) {
       setFeesPath([JARVIS_SWAP_FEES]);
     } else if (tokenInObject.pool === tokenOutObject.pool) {
       setFeesPath([CURVE_SWAP_FEES]);
     } else if (
-      tokenInObject.type.includes(TokenTypes.jSynth) &&
-      tokenOutObject.type.includes(TokenTypes.stablecoin)
+      (tokenInObject.type.includes(TokenTypes.jSynth) &&
+        tokenOutObject.type.includes(TokenTypes.stablecoin)) ||
+      (tokenInObject.type.includes(TokenTypes.collateral) &&
+        tokenOutObject.type.includes(TokenTypes.stablecoin))
     ) {
       setFeesPath([JARVIS_SWAP_FEES, CURVE_SWAP_FEES]);
     } else if (
-      tokenInObject.type.includes(TokenTypes.stablecoin) &&
-      tokenOutObject.type.includes(TokenTypes.jSynth)
+      (tokenInObject.type.includes(TokenTypes.stablecoin) &&
+        tokenOutObject.type.includes(TokenTypes.jSynth)) ||
+      (tokenInObject.type.includes(TokenTypes.stablecoin) &&
+        tokenOutObject.type.includes(TokenTypes.collateral))
     ) {
       setFeesPath([CURVE_SWAP_FEES, JARVIS_SWAP_FEES]);
     } else if (

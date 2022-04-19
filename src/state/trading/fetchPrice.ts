@@ -1,3 +1,5 @@
+import tokens from "config/tokens";
+
 // const CURVE_API_URL = "https://curve-api-git-main-curvefi.vercel.app/api/getPools/polygon/factory"
 const CURVE_API_URL =
   "https://curve-api-git-main-curvefi.vercel.app/api/getFactoryV2Pools-polygon";
@@ -9,7 +11,13 @@ const CURVE_IDS = [
 ];
 
 export const fetchPrice = async () => {
-  const tokensPriceInUsd = [];
+  const tokensPriceInUsd = [
+    {
+      symbol: tokens[0].symbol,
+      address: tokens[0].address,
+      usdPrice: 1,
+    },
+  ];
   const response = await fetch(CURVE_API_URL);
   const responseData = await response.json();
   if (response.status === 200 || response.status === 201) {
