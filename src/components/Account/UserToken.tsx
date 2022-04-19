@@ -38,7 +38,6 @@ const UserToken: React.FC = () => {
   const positiveBalance = balances.filter((t) => Number(t.userBalance) > 0);
   const zeroBalance = balances.filter((t) => Number(t.userBalance) === 0);
 
-
   const renderToken = (token) => {
     return (
       <SelectTokenInList key={token.symbol}>

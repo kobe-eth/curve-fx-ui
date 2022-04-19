@@ -1,7 +1,7 @@
 import React from "react";
 
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { styled } from "@mui/material";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { Text } from "components/Text";
 import colors from "config/theme/colors";
@@ -24,20 +24,16 @@ const Wrapper = styled("div")({
 const Route: React.FC<RouteProps> = ({ route }) => {
   return (
     <Wrapper>
+      <Text style={{ color: `${colors.textPrimary}50` }}>Route</Text>
       <Text style={{ color: `${colors.textPrimary}50` }}>
-        Route
-      </Text>
-      <Text style={{ color: `${colors.textPrimary}50` }}>
-        {
-          route.map((r, index) => {
-            return (
-              <>
-                {r}
-                {route.length !== index + 1 ? <ArrowForwardIosIcon /> : <></>}
-              </>
-            )
-          })
-        }
+        {route.map((r, index) => {
+          return (
+            <span key={`route-step-${index}`}>
+              {r}
+              {route.length !== index + 1 ? <ArrowForwardIosIcon /> : <></>}
+            </span>
+          );
+        })}
       </Text>
     </Wrapper>
   );

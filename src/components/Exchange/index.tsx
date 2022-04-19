@@ -9,8 +9,8 @@ import ChooseAsset from "./ChooseAsset";
 import ChooseTradingPair from "./ChooseTradingPair";
 import SearchBar from "./components/SearchBar";
 import { ExchangeHeader, Wrapper } from "./components/styles";
-import Swap from "./Swap";
 import SwapInfo from "./components/SwapInfo";
+import Swap from "./Swap";
 
 const Container = styled("div")({
   display: "flex",

@@ -8,7 +8,7 @@ import { TradingState, TradingPair, Price } from "./types";
 
 const initialState: TradingState = {
   data: null,
-  prices: []
+  prices: [],
 };
 
 export const tradingSlice = createSlice({

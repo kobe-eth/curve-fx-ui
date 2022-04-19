@@ -27,7 +27,9 @@ export const useUsdPrices = (): Price[] => {
 };
 
 export const useUsdPricesFromSymbol = (symbol: string): Price => {
-  const usdPrice = useSelector((state: State) => state.trading.prices.find(p => p.symbol === symbol));
+  const usdPrice = useSelector((state: State) =>
+    state.trading.prices.find((p) => p.symbol === symbol)
+  );
   return usdPrice;
 };
 

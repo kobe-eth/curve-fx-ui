@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           }}
         />
         <Container maxWidth="lg">
-            <AnyComponent {...pageProps} />
+          <AnyComponent {...pageProps} />
         </Container>
       </Providers>
     </>
