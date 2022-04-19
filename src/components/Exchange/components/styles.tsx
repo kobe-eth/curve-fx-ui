@@ -76,14 +76,3 @@ export const SelectTokenContainer = styled("div")({
 export const Image = styled("img")({
   marginRight: "6px",
 });
-
-export const SwapInfo = styled(Wrapper)({
-  flexDirection: "column",
-  marginTop: "24px",
-  padding: "16px",
-  svg: {
-    width: "12px",
-    height: "12px",
-    margin: "0px 2px 0px 2px",
-  }
-});

@@ -7,11 +7,10 @@ import colors from "config/theme/colors";
 
 import ChooseAsset from "./ChooseAsset";
 import ChooseTradingPair from "./ChooseTradingPair";
-import ProtocolFees from "./components/ProtocolFees";
-import Route from "./components/Route";
 import SearchBar from "./components/SearchBar";
-import { ExchangeHeader, SwapInfo, Wrapper } from "./components/styles";
+import { ExchangeHeader, Wrapper } from "./components/styles";
 import Swap from "./Swap";
+import SwapInfo from "./components/SwapInfo";
 
 const Container = styled("div")({
   display: "flex",
@@ -138,17 +137,11 @@ const Exchange: React.FC = () => {
         />
         {renderView()}
       </Wrapper>
-      <SwapInfo>
-        <ProtocolFees
-          tokenIn={tokenIn}
-          tokenOut={tokenOut}
-          tokenInAmount={tokenInAmount}
-        />
-        <Route
-          tokenIn={tokenIn}
-          tokenOut={tokenOut}
-        />
-      </SwapInfo>
+      <SwapInfo
+        tokenIn={tokenIn}
+        tokenOut={tokenOut}
+        tokenInAmount={tokenInAmount}
+      />
     </Container>
   );
 };
