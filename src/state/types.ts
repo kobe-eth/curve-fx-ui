@@ -6,6 +6,7 @@ export enum TokenTypes {
   stablecoin = "stablecoin",
   collateral = "collateral",
   jSynth = "jSynth",
+  metapool = "meta"
 }
 
 export interface ExchangeParams {
