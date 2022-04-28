@@ -1,13 +1,6 @@
 import { Token, TokenTypes } from "state/types";
 
 const tokens: Token[] = [
-  // Collateral
-  {
-    symbol: "USDC",
-    address: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-    type: [TokenTypes.collateral],
-    decimals: 6,
-  },
   // SynthetiX
   {
     symbol: "jEUR",
@@ -90,6 +83,40 @@ const tokens: Token[] = [
     type: [TokenTypes.stablecoin],
     jSynthAssociated: "jSGD",
     pool: "0x91436EB8038ecc12c60EE79Dfe011EdBe0e6C777",
+  },
+  {
+    symbol: "USDC",
+    address: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+    decimals: 6,
+    type: [TokenTypes.stablecoin],
+    jSynthAssociated: "jEUR",
+    pool: "0xCbbA8c0645ffb8aA6ec868f6F5858F2b0eAe34DA",
+  },
+
+  {
+    symbol: "miMATIC",
+    address: "0xa3Fa99A148fA48D14Ed51d610c367C61876997F1",
+    decimals: 18,
+    type: [TokenTypes.stablecoin],
+    jSynthAssociated: "jEUR",
+    pool: "0xCbbA8c0645ffb8aA6ec868f6F5858F2b0eAe34DA",
+  },
+
+  {
+    symbol: "DAI",
+    address: "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
+    decimals: 18,
+    type: [TokenTypes.stablecoin],
+    jSynthAssociated: "jEUR",
+    pool: "0xCbbA8c0645ffb8aA6ec868f6F5858F2b0eAe34DA",
+  },
+  {
+    symbol: "USDT",
+    address: "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+    decimals: 6,
+    type: [TokenTypes.stablecoin],
+    jSynthAssociated: "jEUR",
+    pool: "0xCbbA8c0645ffb8aA6ec868f6F5858F2b0eAe34DA",
   },
 ];
 
