@@ -54,7 +54,11 @@ const ProtocolFees: React.FC<ProtocolFeesProps> = ({
         tokenOutObject.type.includes(TokenTypes.jSynth))
     ) {
       setFeesPath([JARVIS_SWAP_FEES]);
-    } else if (tokenInObject.pool === tokenOutObject.pool) {
+    } else if (
+      tokenInObject.pool === tokenOutObject.pool &&
+      (!tokenInObject.type.includes(TokenTypes.metapool) ||
+        tokenOutObject.type.includes(TokenTypes.metapool))
+    ) {
       setFeesPath([CURVE_SWAP_FEES]);
     } else if (
       (tokenInObject.type.includes(TokenTypes.jSynth) &&

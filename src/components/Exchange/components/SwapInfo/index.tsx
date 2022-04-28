@@ -37,7 +37,7 @@ const SwapInfo: React.FC<SwapInfoProps> = ({
     const tokenInObject = tokens.find((t) => t.symbol === tokenIn);
     const tokenOutObject = tokens.find((t) => t.symbol === tokenOut);
 
-    let route = []
+    let route = [];
 
     if (
       (tokenInObject.type.includes(TokenTypes.collateral) &&
@@ -46,12 +46,15 @@ const SwapInfo: React.FC<SwapInfoProps> = ({
         tokenOutObject.type.includes(TokenTypes.collateral)) ||
       (tokenInObject.type.includes(TokenTypes.jSynth) &&
         tokenOutObject.type.includes(TokenTypes.jSynth)) ||
-        (tokenOutObject.type.includes(TokenTypes.metapool) && tokenInObject.type.includes(TokenTypes.metapool))
+      (tokenOutObject.type.includes(TokenTypes.metapool) &&
+        tokenInObject.type.includes(TokenTypes.metapool))
     ) {
       route = [tokenIn, tokenOut];
       if (
-        (tokenInObject.type.includes(TokenTypes.metapool) && !tokenOutObject.type.includes(TokenTypes.metapool)) ||
-        (tokenOutObject.type.includes(TokenTypes.metapool) && !tokenInObject.type.includes(TokenTypes.metapool))
+        (tokenInObject.type.includes(TokenTypes.metapool) &&
+          !tokenOutObject.type.includes(TokenTypes.metapool)) ||
+        (tokenOutObject.type.includes(TokenTypes.metapool) &&
+          !tokenInObject.type.includes(TokenTypes.metapool))
       ) {
         route = [tokenIn, "USDC", tokenOut];
       }
