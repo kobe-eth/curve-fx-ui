@@ -10,83 +10,123 @@ import ProtocolFees from "./ProtocolFees";
 import Route from "./Route";
 
 interface SwapInfoProps {
-    tokenIn: string;
-    tokenOut: string;
-    tokenInAmount: any;
+  tokenIn: string;
+  tokenOut: string;
+  tokenInAmount: any;
 }
 
 export const Container = styled(Wrapper)({
-    flexDirection: "column",
-    marginTop: "24px",
-    padding: "16px",
-    svg: {
-        width: "12px",
-        height: "12px",
-        margin: "0px 2px 0px 2px",
-    },
+  flexDirection: "column",
+  marginTop: "24px",
+  padding: "16px",
+  svg: {
+    width: "12px",
+    height: "12px",
+    margin: "0px 2px 0px 2px",
+  },
 });
 
 const SwapInfo: React.FC<SwapInfoProps> = ({
-    tokenIn,
-    tokenOut,
-    tokenInAmount,
+  tokenIn,
+  tokenOut,
+  tokenInAmount,
 }) => {
-    const [route, setRoute] = useState([]);
+  const [route, setRoute] = useState([]);
 
-    useEffect(() => {
-        const tokenInObject = tokens.find((t) => t.symbol === tokenIn);
-        const tokenOutObject = tokens.find((t) => t.symbol === tokenOut);
+  useEffect(() => {
+    const tokenInObject = tokens.find((t) => t.symbol === tokenIn);
+    const tokenOutObject = tokens.find((t) => t.symbol === tokenOut);
 
-        if (
-            (tokenInObject.type.includes(TokenTypes.collateral) &&
-                tokenOutObject.type.includes(TokenTypes.jSynth)) ||
-            (tokenInObject.type.includes(TokenTypes.jSynth) &&
-                tokenOutObject.type.includes(TokenTypes.collateral)) ||
-            (tokenInObject.type.includes(TokenTypes.jSynth) &&
-                tokenOutObject.type.includes(TokenTypes.jSynth)) ||
-            tokenInObject.pool === tokenOutObject.pool
-        ) {
-            setRoute([tokenIn, tokenOut]);
-        } else if (
-            (tokenInObject.type.includes(TokenTypes.jSynth) &&
-                tokenOutObject.type.includes(TokenTypes.stablecoin)) ||
-            (tokenInObject.type.includes(TokenTypes.collateral) &&
-                tokenOutObject.type.includes(TokenTypes.stablecoin))
-        ) {
-            setRoute([tokenIn, tokenOutObject.jSynthAssociated, tokenOut]);
-        } else if (
-            (tokenInObject.type.includes(TokenTypes.stablecoin) &&
-                tokenOutObject.type.includes(TokenTypes.jSynth)) ||
-            (tokenInObject.type.includes(TokenTypes.stablecoin) &&
-                tokenOutObject.type.includes(TokenTypes.collateral))
-        ) {
-            setRoute([tokenIn, tokenInObject.jSynthAssociated, tokenOut]);
-        } else if (
-            tokenInObject.type.includes(TokenTypes.stablecoin) &&
-            tokenOutObject.type.includes(TokenTypes.stablecoin)
-        ) {
-            setRoute([
-                tokenIn,
-                tokenInObject.jSynthAssociated,
-                tokenOutObject.jSynthAssociated,
-                tokenOut,
-            ]);
-        } else {
-            setRoute([]);
-        }
-    }, [tokenIn, tokenOut]);
+    if (
+      (tokenInObject.type.includes(TokenTypes.collateral) &&
+        tokenOutObject.type.includes(TokenTypes.jSynth)) ||
+      (tokenInObject.type.includes(TokenTypes.jSynth) &&
+        tokenOutObject.type.includes(TokenTypes.collateral)) ||
+      (tokenInObject.type.includes(TokenTypes.jSynth) &&
+        tokenOutObject.type.includes(TokenTypes.jSynth))
+    ) {
+      let route = [tokenIn, tokenOut];
+      if (
+        tokenInObject.type.includes(TokenTypes.metapool) ||
+        tokenOutObject.type.includes(TokenTypes.metapool)
+      ) {
+        route = [tokenIn, "USDC", tokenOut];
+      }
+      route = [...new Set(route)];
+      setRoute(route);
+    } else if (
+      (tokenInObject.type.includes(TokenTypes.jSynth) &&
+        tokenOutObject.type.includes(TokenTypes.stablecoin)) ||
+      (tokenInObject.type.includes(TokenTypes.collateral) &&
+        tokenOutObject.type.includes(TokenTypes.stablecoin))
+    ) {
+      let route = [tokenIn, tokenOutObject.jSynthAssociated, tokenOut];
+      if (tokenInObject.type.includes(TokenTypes.metapool)) {
+        route = [tokenIn, "USDC", tokenOutObject.jSynthAssociated, tokenOut];
+      } else if (tokenOutObject.type.includes(TokenTypes.metapool)) {
+        route = [tokenIn, tokenOutObject.jSynthAssociated, "USDC", tokenOut];
+      }
+      route = [...new Set(route)];
+      setRoute(route);
+    } else if (
+      (tokenInObject.type.includes(TokenTypes.stablecoin) &&
+        tokenOutObject.type.includes(TokenTypes.jSynth)) ||
+      (tokenInObject.type.includes(TokenTypes.stablecoin) &&
+        tokenOutObject.type.includes(TokenTypes.collateral))
+    ) {
+      let route = [tokenIn, tokenInObject.jSynthAssociated, tokenOut];
+      if (tokenInObject.type.includes(TokenTypes.metapool)) {
+        route = [tokenIn, "USDC", tokenInObject.jSynthAssociated, tokenOut];
+      } else if (tokenOutObject.type.includes(TokenTypes.metapool)) {
+        route = [tokenIn, tokenInObject.jSynthAssociated, "USDC", tokenOut];
+      }
+      route = [...new Set(route)];
+      setRoute(route);
+    } else if (
+      tokenInObject.type.includes(TokenTypes.stablecoin) &&
+      tokenOutObject.type.includes(TokenTypes.stablecoin)
+    ) {
+      let route = [
+        tokenIn,
+        tokenInObject.jSynthAssociated,
+        tokenOutObject.jSynthAssociated,
+        tokenOut,
+      ];
+      if (tokenInObject.type.includes(TokenTypes.metapool)) {
+        route = [
+          tokenIn,
+          "USDC",
+          tokenInObject.jSynthAssociated,
+          tokenOutObject.jSynthAssociated,
+          tokenOut,
+        ];
+      } else if (tokenOutObject.type.includes(TokenTypes.metapool)) {
+        route = [
+          tokenIn,
+          tokenInObject.jSynthAssociated,
+          tokenOutObject.jSynthAssociated,
+          "USDC",
+          tokenOut,
+        ];
+      }
+      route = [...new Set(route)];
+      setRoute(route);
+    } else {
+      setRoute([]);
+    }
+  }, [tokenIn, tokenOut]);
 
-    return (
-        <Container>
-            <ProtocolFees
-                route={route}
-                tokenIn={tokenIn}
-                tokenOut={tokenOut}
-                tokenInAmount={tokenInAmount}
-            />
-            <Route route={route} />
-        </Container>
-    );
+  return (
+    <Container>
+      <ProtocolFees
+        route={route}
+        tokenIn={tokenIn}
+        tokenOut={tokenOut}
+        tokenInAmount={tokenInAmount}
+      />
+      <Route route={route} />
+    </Container>
+  );
 };
 
 export default SwapInfo;

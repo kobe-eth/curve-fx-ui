@@ -15,7 +15,6 @@ export const fetchBalance = async (chainId: number, account: string) => {
 
   const rawBalances = await multicall(chainId, erc20Abi, callsBalance);
 
-
   const balances = rawBalances.map((t, index) => {
     const balance = t["balance"];
     return {
