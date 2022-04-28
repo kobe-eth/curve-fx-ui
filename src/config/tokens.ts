@@ -88,7 +88,7 @@ const tokens: Token[] = [
     symbol: "USDC",
     address: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
     decimals: 6,
-    type: [TokenTypes.stablecoin, TokenTypes.collateral],
+    type: [TokenTypes.stablecoin, TokenTypes.collateral, TokenTypes.metapool],
     jSynthAssociated: "jEUR",
     pool: "0xCbbA8c0645ffb8aA6ec868f6F5858F2b0eAe34DA",
   },
