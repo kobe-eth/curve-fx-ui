@@ -28,8 +28,8 @@ export const Container = styled(Wrapper)({
 
 const buildRoute = (tokenIn: Token, tokenOut: Token) => {
   const collateral = tokens.find((t) => t.type.includes(TokenTypes.collateral));
-  let fromTypes = tokenIn.type;
-  let toTypes = tokenOut.type;
+  const fromTypes = tokenIn.type;
+  const toTypes = tokenOut.type;
 
   let route = [tokenIn.symbol, tokenOut.symbol];
   // jSynth
