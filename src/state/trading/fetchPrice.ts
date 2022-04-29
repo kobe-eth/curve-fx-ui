@@ -36,7 +36,6 @@ export const fetchPrice = async () => {
     const filteredPoolData = poolData.filter((p) => CURVE_IDS.includes(p.id));
     filteredPoolData.forEach((pool) => {
       pool.coins.forEach((token) => {
-        console.log(token.symbol);
         tokensPriceInUsd.push({
           symbol: token.symbol === "miMATIC" ? "MAI" : token.symbol,
           address: token.address,

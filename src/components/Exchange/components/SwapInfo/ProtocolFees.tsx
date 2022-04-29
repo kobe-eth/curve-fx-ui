@@ -8,7 +8,7 @@ import { CURVE_SWAP_FEES, JARVIS_SWAP_FEES } from "config";
 import colors from "config/theme/colors";
 import tokens from "config/tokens";
 import { useUsdPrices } from "state/trading/hooks";
-import { TokenTypes } from "state/types";
+import { Token, TokenTypes } from "state/types";
 import { format } from "utils/number";
 
 interface ProtocolFeesProps {
@@ -28,6 +28,7 @@ const Wrapper = styled("div")({
     margin: "0px 0px -2px 4px",
   },
 });
+
 
 const ProtocolFees: React.FC<ProtocolFeesProps> = ({
   route,

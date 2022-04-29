@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material";
 
 import tokens from "config/tokens";
-import { TokenTypes } from "state/types";
+import { Token, TokenTypes } from "state/types";
 
 import { Wrapper } from "../styles";
 import ProtocolFees from "./ProtocolFees";
@@ -26,6 +26,60 @@ export const Container = styled(Wrapper)({
   },
 });
 
+const buildRoute = (tokenIn: Token, tokenOut: Token) => {
+  const collateral = tokens.find((t) => t.type.includes(TokenTypes.collateral));
+  let fromTypes = tokenIn.type;
+  let toTypes = tokenOut.type;
+
+  let route = [tokenIn.symbol, tokenOut.symbol];
+  // jSynth
+  if (fromTypes.includes(TokenTypes.jSynth)) {
+    if (toTypes.includes(TokenTypes.metapool)) {
+      route = [tokenIn.symbol, collateral.symbol, tokenOut.symbol];
+    } else if (!toTypes.includes(TokenTypes.jSynth)) {
+      route = [tokenIn.symbol, tokenOut.jSynthAssociated, tokenOut.symbol];
+    }
+  }
+  // Collateral
+  else if (fromTypes.includes(TokenTypes.collateral)) {
+    if (toTypes.includes(TokenTypes.metapool)) {
+      route = [tokenIn.symbol, collateral.symbol, tokenOut.symbol];
+    } else if (!toTypes.includes(TokenTypes.jSynth)) {
+      route = [
+        tokenIn.symbol,
+        collateral.symbol,
+        tokenOut.jSynthAssociated,
+        tokenOut.symbol,
+      ];
+    }
+  } else if (fromTypes.includes(TokenTypes.metapool)) {
+    if (toTypes.includes(TokenTypes.jSynth)) {
+      route = [tokenIn.symbol, collateral.symbol, tokenOut.symbol];
+    } else if (!toTypes.includes(TokenTypes.metapool)) {
+      route = [
+        tokenIn.symbol,
+        collateral.symbol,
+        tokenOut.jSynthAssociated,
+        tokenOut.symbol,
+      ];
+    }
+  } else {
+    if (toTypes.includes(TokenTypes.metapool)) {
+      route = [
+        tokenIn.symbol,
+        tokenIn.jSynthAssociated,
+        collateral.symbol,
+        tokenOut.symbol,
+      ];
+    } else if (toTypes.includes(TokenTypes.collateral)) {
+      route = [tokenIn.symbol, tokenIn.jSynthAssociated, tokenOut.symbol];
+    }
+  }
+
+  route = [...new Set(route)];
+  return route;
+};
+
 const SwapInfo: React.FC<SwapInfoProps> = ({
   tokenIn,
   tokenOut,
@@ -36,83 +90,7 @@ const SwapInfo: React.FC<SwapInfoProps> = ({
   useEffect(() => {
     const tokenInObject = tokens.find((t) => t.symbol === tokenIn);
     const tokenOutObject = tokens.find((t) => t.symbol === tokenOut);
-
-    let route = [];
-
-    if (
-      (tokenInObject.type.includes(TokenTypes.collateral) &&
-        tokenOutObject.type.includes(TokenTypes.jSynth)) ||
-      (tokenInObject.type.includes(TokenTypes.jSynth) &&
-        tokenOutObject.type.includes(TokenTypes.collateral)) ||
-      (tokenInObject.type.includes(TokenTypes.jSynth) &&
-        tokenOutObject.type.includes(TokenTypes.jSynth)) ||
-      (tokenOutObject.type.includes(TokenTypes.metapool) &&
-        tokenInObject.type.includes(TokenTypes.metapool))
-    ) {
-      route = [tokenIn, tokenOut];
-      if (
-        (tokenInObject.type.includes(TokenTypes.metapool) &&
-          !tokenOutObject.type.includes(TokenTypes.metapool)) ||
-        (tokenOutObject.type.includes(TokenTypes.metapool) &&
-          !tokenInObject.type.includes(TokenTypes.metapool))
-      ) {
-        route = [tokenIn, "USDC", tokenOut];
-      }
-    } else if (
-      (tokenInObject.type.includes(TokenTypes.jSynth) &&
-        tokenOutObject.type.includes(TokenTypes.stablecoin)) ||
-      (tokenInObject.type.includes(TokenTypes.collateral) &&
-        tokenOutObject.type.includes(TokenTypes.stablecoin))
-    ) {
-      route = [tokenIn, tokenOutObject.jSynthAssociated, tokenOut];
-      if (tokenInObject.type.includes(TokenTypes.metapool)) {
-        route = [tokenIn, "USDC", tokenOutObject.jSynthAssociated, tokenOut];
-      } else if (tokenOutObject.type.includes(TokenTypes.metapool)) {
-        route = [tokenIn, tokenOutObject.jSynthAssociated, "USDC", tokenOut];
-      }
-    } else if (
-      (tokenInObject.type.includes(TokenTypes.stablecoin) &&
-        tokenOutObject.type.includes(TokenTypes.jSynth)) ||
-      (tokenInObject.type.includes(TokenTypes.stablecoin) &&
-        tokenOutObject.type.includes(TokenTypes.collateral))
-    ) {
-      route = [tokenIn, tokenInObject.jSynthAssociated, tokenOut];
-      if (tokenInObject.type.includes(TokenTypes.metapool)) {
-        route = [tokenIn, "USDC", tokenInObject.jSynthAssociated, tokenOut];
-      } else if (tokenOutObject.type.includes(TokenTypes.metapool)) {
-        route = [tokenIn, tokenInObject.jSynthAssociated, "USDC", tokenOut];
-      }
-    } else if (
-      tokenInObject.type.includes(TokenTypes.stablecoin) &&
-      tokenOutObject.type.includes(TokenTypes.stablecoin)
-    ) {
-      route = [
-        tokenIn,
-        tokenInObject.jSynthAssociated,
-        tokenOutObject.jSynthAssociated,
-        tokenOut,
-      ];
-      if (tokenInObject.type.includes(TokenTypes.metapool)) {
-        route = [
-          tokenIn,
-          "USDC",
-          tokenInObject.jSynthAssociated,
-          tokenOutObject.jSynthAssociated,
-          tokenOut,
-        ];
-      } else if (tokenOutObject.type.includes(TokenTypes.metapool)) {
-        route = [
-          tokenIn,
-          tokenInObject.jSynthAssociated,
-          tokenOutObject.jSynthAssociated,
-          "USDC",
-          tokenOut,
-        ];
-      }
-    } else {
-    }
-
-    route = [...new Set(route)];
+    const route = buildRoute(tokenInObject, tokenOutObject);
     setRoute(route);
   }, [tokenIn, tokenOut]);
 
